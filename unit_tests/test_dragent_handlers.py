@@ -122,15 +122,11 @@ class TestDRAgentHandlers(unittest.TestCase):
                                  "{}: incorrect state registration".format(f))
 
     def test_publish_bgp_info(self):
-        _asn = 12345
         _bindings = ['bgp-speaker']
         self.patch(handlers.dragent, 'assess_status')
-        self.patch(handlers.hookenv, 'config')
-        self.config.return_value = _asn
         bgp = mock.MagicMock()
         handlers.publish_bgp_info(bgp)
-        bgp.publish_info.assert_called_once_with(asn=_asn,
-                                                 passive=True,
+        bgp.publish_info.assert_called_once_with(passive=True,
                                                  bindings=_bindings)
 
     def test_setup_amqp_req(self):

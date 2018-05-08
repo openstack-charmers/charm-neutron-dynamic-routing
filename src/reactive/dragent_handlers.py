@@ -38,8 +38,7 @@ charm.use_defaults(
 def publish_bgp_info(endpoint):
     """Publish BGP information about this unit to interface-bgp peers
     """
-    endpoint.publish_info(asn=hookenv.config('asn'),
-                          passive=True,
+    endpoint.publish_info(passive=True,
                           bindings=dragent.bgp_speaker_bindings())
     dragent.assess_status()
 
